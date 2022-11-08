@@ -76,18 +76,16 @@ public class bullet : MonoBehaviour
 
     void MotionMod()
     {
-       
+        var x1 = (float)Random.Range(-3, 5);
+        var y1 = (float)Random.Range(-3, 5);
+        var z1 = (float)Random.Range(-3, 5);
 
         foreach (var obj in listObj)
         {
 
-            var x1 = (float)Random.Range(-0.3f, 0.3f);
-            var y1 = (float)Random.Range(-0.3f, 0.3f);
-            var z1 = (float)Random.Range(-0.3f, 0.3f);
-
             var objtransform = obj.transform;
            // objtransform.localScale = new Vector3(x1, y1, z1);
-            objtransform.localPosition = new Vector3(obj.transform.position.x + x1, obj.transform.position.y+y1, obj.transform.position.z+ z1);
+            objtransform.localPosition = new Vector3(x1, y1, z1);
 
 
             
