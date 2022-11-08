@@ -9,6 +9,8 @@ public class bullet : MonoBehaviour
 
     public float StartTime=0;
     public float DestroyTime = 0.2f;
+    public float SShift1 = 0.02f;
+    public float SShift2 = 0.02f;
     private GameObject bulletClone;
     private GameObject bulletClone2;
 
@@ -17,12 +19,18 @@ public class bullet : MonoBehaviour
     public GameObject BulletPF;
     public GameObject SperePF;
     private List<GameObject> listObj = new List <GameObject>();
-     
-     
 
 
-     void Fire()
-     {
+    private void Start()
+    {
+        for (int i = 0; i < 22; i++)
+        {
+            Fire();
+        }
+    }
+
+    void Fire()
+    {
 
         bulletClone = Instantiate(BulletPF, transform.position, transform.rotation);
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
@@ -43,11 +51,15 @@ public class bullet : MonoBehaviour
         bulletClone2 = Instantiate(SperePF, posi1, transform.rotation);
         listObj.Add(bulletClone2);
 
+        var Rend2 = bulletClone2.GetComponent<Renderer>();
+
         var color1 = (int)Random.Range(0, 255);
         var color2 = (int)Random.Range(0, 255);
         var color3 = (int)Random.Range(0, 255);
 
-        //  df = new UnityEngine.Color(color1 / 255.0f, color2 / 255.0f, color3 / 255.0f);
+        var ColorN= new UnityEngine.Color(color1 / 255.0f, color2 / 255.0f, color3 / 255.0f);
+
+        Rend2.material.SetColor("_Color",ColorN) ;
 
 
         Destroy(bulletClone, 125.5f);
@@ -76,21 +88,21 @@ public class bullet : MonoBehaviour
 
     void MotionMod()
     {
-       
+
 
         foreach (var obj in listObj)
         {
 
-            var x1 = (float)Random.Range(-0.3f, 0.3f);
-            var y1 = (float)Random.Range(-0.3f, 0.3f);
-            var z1 = (float)Random.Range(-0.3f, 0.3f);
+            var x1 = (float)Random.Range(-SShift1, SShift2);
+            var y1 = (float)Random.Range(-SShift1, SShift2);
+            var z1 = (float)Random.Range(-SShift1, SShift2);
 
             var objtransform = obj.transform;
-           // objtransform.localScale = new Vector3(x1, y1, z1);
-            objtransform.localPosition = new Vector3(obj.transform.position.x + x1, obj.transform.position.y+y1, obj.transform.position.z+ z1);
+            // objtransform.localScale = new Vector3(x1, y1, z1);
+            objtransform.localPosition = new Vector3(obj.transform.position.x + x1, obj.transform.position.y + y1, obj.transform.position.z + z1);
 
 
-            
+
 
         }
 
@@ -117,5 +129,7 @@ public class bullet : MonoBehaviour
             Fire();
             
         }
+
+        MotionMod();
     }
 }
