@@ -236,6 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartTime: 0
   DestroyTime: 0.3
+  SShift1: 0.2
+  SShift2: 0.2
   bulletSpeed: 5
   BulletPF: {fileID: 5519082300228001480, guid: e4a633d53bd9f2d4b923fcbd67c4ba48, type: 3}
   SperePF: {fileID: 1751971283}
