@@ -8,7 +8,7 @@ public class bullet : MonoBehaviour
  {
 
     public float StartTime=0;
-    public float DestroyTime=2;
+    public float DestroyTime = 0.2f;
     private GameObject bulletClone;
     private GameObject bulletClone2;
 
@@ -63,10 +63,10 @@ public class bullet : MonoBehaviour
         // for (int i = 0; i < listObj.Count; i++)
 
         int i = 1;
-        foreach (var obj in listObj )
+        foreach (var obj in listObj)
         {
             i++;
-            Destroy(obj, i);
+            Destroy(obj, i * DestroyTime / 10);
 
         }
 
@@ -74,15 +74,41 @@ public class bullet : MonoBehaviour
 
     }
 
+    void MotionMod()
+    {
+        var x1 = (float)Random.Range(-3, 5);
+        var y1 = (float)Random.Range(-3, 5);
+        var z1 = (float)Random.Range(-3, 5);
 
-     void Update () 
+        foreach (var obj in listObj)
+        {
+
+            var objtransform = obj.transform;
+           // objtransform.localScale = new Vector3(x1, y1, z1);
+            objtransform.localPosition = new Vector3(x1, y1, z1);
+
+
+            
+
+        }
+
+
+    }
+
+    void Update () 
      {
 
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            MotionMod();
+
+        }
 
         if (Input.GetButtonDown("Fire2"))
         {
             make10units();
-            
+
         }
         if (Input.GetButtonDown("Fire1"))
         {
