@@ -9,11 +9,13 @@ public class bullet : MonoBehaviour
 
     public float StartTime=0;
     public float DestroyTime=2;
-    private GameObject bulletClone ;
+    private GameObject bulletClone;
+    private GameObject bulletClone2;
 
     public float bulletSpeed = 100;
-     //public Rigidbody bullet;
+    //public Rigidbody bullet;
     public GameObject BulletPF;
+    public GameObject SperePF;
     private List<GameObject> listObj = new List <GameObject>();
      
      
@@ -33,14 +35,21 @@ public class bullet : MonoBehaviour
         // Debug.Log(color_obj);
         Debug.Log(material_obj);
 
+        var x1 = (float)Random.Range(-3, 5);
+        var y1 = (float)Random.Range(-3, 5);
+        var z1 = (float)Random.Range(-3, 5);
+
+        Vector3 posi1 = new Vector3(x1, y1, z1);
+        bulletClone2 = Instantiate(SperePF, posi1, transform.rotation);
+        listObj.Add(bulletClone2);
 
         var color1 = (int)Random.Range(0, 255);
         var color2 = (int)Random.Range(0, 255);
         var color3 = (int)Random.Range(0, 255);
 
-      //  df = new UnityEngine.Color(color1 / 255.0f, color2 / 255.0f, color3 / 255.0f);
+        //  df = new UnityEngine.Color(color1 / 255.0f, color2 / 255.0f, color3 / 255.0f);
 
-        
+
         Destroy(bulletClone, 125.5f);
 
 
@@ -70,12 +79,12 @@ public class bullet : MonoBehaviour
      {
 
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire2"))
         {
             make10units();
             
         }
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire1"))
         {
             Fire();
             
